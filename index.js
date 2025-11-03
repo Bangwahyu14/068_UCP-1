@@ -19,3 +19,21 @@ db.sequelize.sync()
     .catch((err) => {
         console.log(err);
     })
+    app.post("/buku", async (req, res) => {
+        const data = req.body;
+        try {
+            const buku = await db.buku.create(data);
+            res.send(buku);
+        } catch (err) {
+            res.send(err);
+        }
+    });
+ app.get('/buku', async (req, res) => {
+        try {
+            const buku = await db.buku.findAll();
+            res.send(buku);
+        }catch (err) {
+            res.send(err);
+        }
+    });
+
